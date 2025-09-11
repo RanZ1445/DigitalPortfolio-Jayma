@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Digital Portfolio — Home</title>
+
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <!--
+    NAVIGATION BAR
+    Order: Profile picture --- My Digital Portfolio --- Home --- About Me --- Achievements --- Projects --- Experiments --- Meet the team --- Contacts --- Facebook & Discord
+    The collapse/expand toggle sits at the bottom-left of the header and moves with it.
+    When collapsed the header slides up smoothly and only the small toggle remains visible.
+  -->
+  <header id="siteHeader" class="site-header" role="banner" aria-label="Main header">
+    <div class="nav-inner container">
+      <!-- LEFT: profile avatar + site name (replace the src below with your avatar) -->
+      <div class="left-group">
+        <!-- CHANGE: replace src with assets/your-avatar.png (recommended square) -->
+        <img class="brand-avatar" src="data:image/svg+xml;utf8,
+          <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><rect width='48' height='48' rx='8' fill='%23ffd54f'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-family='Poppins' font-size='18' fill='%23000'>JD</text></svg>"
+             alt="Brand avatar / profile" />
+
+        <div class="brand-title">My Digital Portfolio</div>
+      </div>
+
+      <!-- CENTER: main links -->
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="experiments.html">Experiments</a></li>
+          <li><a href="#members">Meet the Team</a></li>
+          <li><a href="#contact">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <!-- RIGHT: Socials (also included in Contacts) -->
+      <div class="nav-socials">
+        <!-- CHANGE: replace href with your profile links -->
+        <a class="nav-social" href="https://www.facebook.com/rance.lopez.313" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a class="nav-social" href="https://discord.com/users/yourid" target="_blank" rel="noopener" title="Discord"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+
+    <!-- Header toggle (bottom-left) -->
+    <!-- The characters used are '^' and '˅' (not the letter 'V'); they follow the header animation. -->
+    <button id="toggleNavbar" class="header-toggle" aria-controls="siteHeader" aria-expanded="true" title="Toggle navigation">^</button>
+  </header>
+
+  <!-- MAIN PAGE -->
+  <main id="mainContent">
+
+    <!-- HERO / HOME
+         To change hero background: add a URL to the data-bg attribute below.
+         Example: <section class="hero" id="home" data-bg="assets/your-hero-bg.jpg">
+         The background will scroll with the page (not fixed).
+    -->
+    <section id="home" class="section hero" data-bg="Assets/Mataura.png">
+      <div class="container hero-inner">
+        <!-- NOTE: profile pic & site title were moved into nav to prevent extra top spacing (as you requested). -->
+        <h1 class="hero-title">Welcome to My Digital Portfolio</h1>
+        <p class="hero-sub">Grade 12 • Physics</p>
+      </div>
+    </section>
+
+    <!-- ABOUT
+         - Replace the about-avatar src with your profile picture (assets/your-profile.png)
+         - Edit text and 'role' below
+    -->
+    <section id="about" class="section" data-bg="">
+      <div class="container about-grid">
+        <div class="about-avatar">
+          <!-- CHANGE: replace with your photo in assets/ (recommended 300x300) -->
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='200' height='200' rx='12' fill='%23eef2ff'/><circle cx='100' cy='70' r='40' fill='%23cbd5e1'/></svg>"
+               alt="About profile placeholder">
+        </div>
+
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p class="role"><strong>Role:</strong> Grade 12 — Physics Student</p>
+          <p>Hello — I'm <strong>[Your Name]</strong>. I like building experiments, working with teams, and documenting results here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS (you asked to restore these) -->
+    <section id="achievements" class="section" data-bg="">
+      <div class="container">
+        <h2>Achievements</h2>
+        <ul class="achievements-list">
+          <!-- CHANGE: add your achievements -->
+          <li>Physics Quiz Bee — 2nd Place (2025)</li>
+          <li>Top Research Presentation — School Fair</li>
+          <li>Science Club — Active Member</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPERIMENTS CAROUSEL (homepage preview)
+         - Use SVG files for cards (place them in /assets).
+         - Clicking a card goes to experiments.html#expX (anchor ids are exp1, exp2, …).
+         - Cards have a hover scale effect (slight enlargement).
+         - To add more: copy one <a class="experiment-card"> block and change href & image.
+    -->
+    <section id="experiments-preview" class="section">
+      <div class="container">
+        <h2>Experiments (Preview)</h2>
+
+        <div class="carousel-wrap">
+          <button class="carousel-btn left" data-target="experimentsCarousel" aria-label="Scroll left">‹</button>
+
+          <div id="experimentsCarousel" class="carousel" role="list">
+            <!-- EXAMPLE CARD: replace src with assets/experiment1.svg -->
+            <a class="carousel-card experiment-card" href="experiments.html#exp1" role="listitem">
+              <img src="assets/experiment1.svg" alt="Experiment 1 (SVG)">
+              <h3>Experiment 1</h3>
+            </a>
+
+            <a class="carousel-card experiment-card" href="experiments.html#exp2" role="listitem">
+              <img src="assets/experiment2.svg" alt="Experiment 2 (SVG)">
+              <h3>Experiment 2</h3>
+            </a>
+
+            <a class="carousel-card experiment-card" href="experiments.html#exp3" role="listitem">
+              <img src="assets/experiment3.svg" alt="Experiment 3 (SVG)">
+              <h3>Experiment 3</h3>
+            </a>
+
+            <!-- Add more experiment cards here -->
+          </div>
+
+          <button class="carousel-btn right" data-target="experimentsCarousel" aria-label="Scroll right">›</button>
+        </div>
+
+        <!-- small note in case you want auto-play later -->
+        <!-- To make this a fancier slider (autoplay, snap, dots) we can add that later -->
+      </div>
+    </section>
+
+    <!-- PROJECTS CAROUSEL (homepage)
+         - Horizontal, like Netflix — modular
+         - Hover effect on project cards (slight scale)
+         - Add cards by copying an <article class="hcard"> block and replacing the image and text
+    -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+
+        <div class="projects-scroll-wrap">
+          <button class="hscroll-btn left" data-target="projectsScroll" aria-label="Scroll left">‹</button>
+
+          <div id="projectsScroll" class="hscroll" role="list" tabindex="0">
+            <!-- PROJECT CARD: change image src to assets/projectX-slide.png -->
+            <article class="hcard project-card" role="listitem">
+              <img src="assets/project1-slide.png" alt="Project 1">
+              <h4>Project 1</h4>
+            </article>
+
+            <article class="hcard project-card" role="listitem">
+              <img src="assets/project2-slide.png" alt="Project 2">
+              <h4>Project 2</h4>
+            </article>
+
+            <article class="hcard project-card" role="listitem">
+              <img src="assets/project3-slide.png" alt="Project 3">
+              <h4>Project 3</h4>
+            </article>
+
+            <article class="hcard project-card" role="listitem">
+              <img src="assets/project4-slide.png" alt="Project 4">
+              <h4>Project 4</h4>
+            </article>
+			
+			<article class="hcard project-card" role="listitem">
+              <img src="assets/project4-slide.png" alt="Project 4">
+              <h4>Project 5</h4>
+            </article>
+			
+			<article class="hcard project-card" role="listitem">
+              <img src="assets/project4-slide.png" alt="Project 4">
+              <h4>Project 5</h4>
+            </article>
+			
+
+            <!-- Add more project cards as needed -->
+          </div>
+
+          <button class="hscroll-btn right" data-target="projectsScroll" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIBE TRIBE MEMBERS (4x1 grid)
+         - Each member shows role above the face (title), face image, and a button to unfold an in-place role description
+         - Replace images and role text in each .member-card block
+         - The role-description uses a smooth max-height transition
+    -->
+    <section id="members" class="section">
+      <div class="container">
+        <h2>Vibe Tribe Members</h2>
+
+        <div class="members-grid">
+          <!-- MEMBER 1 -->
+          <div class="member-card">
+            <div class="member-role-title">Leader</div>
+            <!-- CHANGE: replace src with actual member face image -->
+            <img class="member-face" src="assets/member1.png" alt="Member 1">
+            <button class="toggle-role" aria-expanded="false">Show role</button>
+            <div class="role-description">
+              <p><strong>Leader</strong> — Guides the team, organizes schedules and ensures tasks are completed.</p>
+            </div>
+          </div>
+
+          <!-- MEMBER 2 -->
+          <div class="member-card">
+            <div class="member-role-title">Researcher</div>
+            <img class="member-face" src="assets/member2.png" alt="Member 2">
+            <button class="toggle-role" aria-expanded="false">Show role</button>
+            <div class="role-description">
+              <p><strong>Researcher</strong> — Gathers materials and data for experiments.</p>
+            </div>
+          </div>
+
+          <!-- MEMBER 3 -->
+          <div class="member-card">
+            <div class="member-role-title">Writer</div>
+            <img class="member-face" src="assets/member3.png" alt="Member 3">
+            <button class="toggle-role" aria-expanded="false">Show role</button>
+            <div class="role-description">
+              <p><strong>Writer</strong> — Drafts the report and documents results clearly.</p>
+            </div>
+          </div>
+
+          <!-- MEMBER 4 -->
+          <div class="member-card">
+            <div class="member-role-title">Presenter</div>
+            <img class="member-face" src="assets/member4.png" alt="Member 4">
+            <button class="toggle-role" aria-expanded="false">Show role</button>
+            <div class="role-description">
+              <p><strong>Presenter</strong> — Presents the team's work and leads demonstrations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTS
+         - Gmail / Facebook / Discord listed here (with links)
+         - Hover effect added to facebook/discord buttons (and elsewhere)
+    -->
+    <section id="contact" class="section" data-bg="">
+      <div class="container">
+        <h2>Contacts</h2>
+        <p><strong>Email:</strong> <a href="mailto:rancelopez6@gmail.com">rancelopez6@gmail.com</a></p>
+        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/rance.lopez.313" target="_blank" rel="noopener">Rance Lopez</a></p>
+        <p><strong>Discord:</strong> <a href="https://discord.com/users/yourid" target="_blank" rel="noopener">yourDiscord#0000</a></p>
+        <p><strong>Phone 1:</strong> <a href="tel:+639667704391">+63 966 770 4391</a></p>
+        <p><strong>Phone 2:</strong> <a href="tel:+639761831262">+63 976 183 1262</a></p>
+
+        <div style="margin-top:14px;">
+          <!-- clickable icon buttons (also hover-scale) -->
+          <a class="contact-social social-link" href="https://www.facebook.com/rance.lopez.313" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+          <a class="contact-social social-link" href="https://discord.com/users/yourid" target="_blank" rel="noopener"><i class="fab fa-discord"></i> Discord</a>
+          <a class="contact-social" href="mailto:your.email@example.com"><i class="fa fa-envelope"></i> Gmail</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2025 My Digital Portfolio</div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
