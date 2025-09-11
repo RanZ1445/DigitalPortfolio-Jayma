@@ -2,204 +2,146 @@
    VARIABLES & RESET
    =========================== */
 :root{
-  --header-h: 80px;                 /* header height */
-  --header-visible-slice: 36px;     /* what remains visible after collapse (so toggle remains clickable) */
-  --container-w: 1280px;
-  --nav-bg: #0b1220;
-  --accent: #ffd54f;
-  --bg: #0b1120; /* dark background */
+  --header-h: 80px;
+  --nav-bg: #00274d;   /* dark blue */
+  --accent: #ffd54f;   /* yellow accent */
+  --bg: #041833;       /* deep navy */
   --card: #ffffff;
-  --muted: #6b7280;
-  --transition-fast: 0.3s;
-  --transition-smooth: 0.36s;
-  --font-color: #e4e6eb;
+  --muted: #a8b6cc;
+  --font: 'Poppins', sans-serif;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  font-family:'Poppins',sans-serif;
+  font-family:var(--font);
   background:var(--bg);
-  color:var(--font-color);
+  color:var(--card);
   -webkit-font-smoothing:antialiased;
-  position:relative;
-  overflow-x:hidden;
+  line-height:1.45;
 }
 
-/* Dynamic geometric background canvas */
+/* Full-page canvas behind everything */
 #bgCanvas {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   background: var(--bg);
 }
 
 /* container helper */
-.container{max-width:var(--container-w);margin:0 auto;padding:0 28px}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* ===========================
-   HEADER / NAVBAR
-   =========================== */
+/* Header */
 .site-header{
-  --h: var(--header-h);
-  height: var(--h);
-  position: fixed;
-  left: 0; right: 0; top: 0;
-  background: var(--nav-bg);
+  height:var(--header-h);
+  position:fixed;
+  left:0; right:0; top:0;
+  background:var(--nav-bg);
   color: #fff;
-  z-index: 1200;
-  display: flex;
-  align-items: center;
-  transition: transform var(--transition-smooth) cubic-bezier(.22,.9,.32,1);
-  box-shadow: 0 6px 20px rgba(2,6,23,0.08);
-  overflow: hidden;
+  z-index:1200;
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
-.site-header.collapsed{transform: translateY(calc(-100% + var(--header-visible-slice)));}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;padding:0 20px;transition: transform .28s ease, opacity .28s ease;} /* more breathing room */
-.site-header.collapsed .nav-inner{transform: translateY(-20px);opacity: 0;pointer-events: none;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
 .left-group{display:flex;align-items:center;gap:12px}
-.brand-avatar{width:48px;height:48px;border-radius:8px;object-fit:cover}
-.brand-title{font-weight:600;font-size:16px}
-.main-nav .nav-links{display:flex;gap:28px;align-items:center;list-style:none} /* increased spacing */
-.nav-links a{color:#fff;text-decoration:none;padding:10px 8px;font-size:14px;display:inline-block}
-.nav-links a:hover{color:var(--accent);transform:scale(1.03);transition:transform var(--transition-fast)}
-.nav-socials{display:flex;gap:12px;align-items:center}
-.nav-social{color:#fff;font-size:18px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
-.nav-social:hover{transform:scale(1.08);color:var(--accent);transition:transform .18s}
-.header-toggle{position:absolute;left:12px;bottom:8px;width:32px;height:32px;border:0;background:transparent;color:#fff;font-size:18px;cursor:pointer;z-index:1300;display:inline-flex;align-items:center;justify-content:center;}
+.brand-avatar{width:48px;height:48px;border-radius:8px;object-fit:cover;border:2px solid rgba(255,255,255,0.06)}
+.brand-title{font-weight:600;font-size:16px;color:var(--accent)}
 
-/* ===========================
-   MAIN LAYOUT & HEADINGS
-   =========================== */
-main#mainContent{padding-top:var(--header-h)}
-.section{padding:56px 0;max-width:var(--container-w);margin:0 auto}
-.section h2{font-size:1.8rem;margin-bottom:16px}
-section[id]{scroll-margin-top: calc(var(--header-h) + 12px);}
+/* Header toggle (small caret used by script) */
+.header-toggle{background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer}
 
-/* ===========================
-   HERO
-   =========================== */
-.section.hero{background:transparent;color:#fff;text-align:center;padding:64px 0 88px}
-.hero-inner{padding:12px}
-.hero-title{font-size:30px;margin-bottom:8px}
-.hero-sub{color:rgba(255,255,255,0.9)}
+/* page spacing to compensate for fixed header */
+main#mainContent{padding-top:calc(var(--header-h) + 12px)}
 
-/* ===========================
-   ABOUT
-   =========================== */
-.about-grid{display:flex;gap:28px;align-items:center}
-.about-avatar img{width:160px;height:160px;border-radius:14px;object-fit:cover}
-.about-text .role{color:var(--muted);margin-bottom:8px}
+/* Sections */
+.section{padding:56px 0}
+.section h2{font-size:1.6rem;margin-bottom:16px;color:var(--accent)}
 
-/* ===========================
-   ACHIEVEMENTS
-   =========================== */
-.achievements-list{list-style:disc inside;color:var(--muted)}
+/* HERO */
+.hero{display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px 120px}
+.hero-title{font-size:32px;color:var(--accent);margin-bottom:8px}
+.hero-sub{color:var(--muted)}
 
-/* ===========================
-   CAROUSEL (EXPERIMENTS PREVIEW)
-   =========================== */
-.carousel-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center; /* center whole carousel */
-  margin-top: 20px;
+/* ABOUT */
+.about-grid{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.about-avatar img{width:160px;height:160px;border-radius:14px;object-fit:cover;border:3px solid rgba(255,255,255,0.04)}
+.about-text p{color:var(--card);margin-bottom:8px}
+
+/* EXPERIMENT (single card) */
+.carousel-wrap{display:flex;justify-content:center}
+.carousel{display:flex;gap:20px;align-items:center}
+.carousel-card{flex:0 0 320px;background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;text-align:center;backdrop-filter: blur(4px)}
+.carousel-card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+.btn{display:inline-block;margin-top:10px;padding:8px 12px;background:var(--accent);color:#000;text-decoration:none;border-radius:8px;font-weight:600}
+
+/* MEMBERS (5 columns) */
+.members-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:14px}
+.member-card{background:rgba(255,255,255,0.03);padding:14px;border-radius:12px;text-align:center;cursor:pointer;transition:transform .18s, box-shadow .18s;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.member-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.45)}
+.member-face{width:110px;height:110px;border-radius:50%;object-fit:cover;margin-bottom:10px;border:3px solid rgba(255,255,255,0.04)}
+.member-role-title{font-weight:700;color:var(--accent);margin-bottom:6px}
+.member-name{font-weight:600;color:var(--card)}
+
+/* Shared role info (the single dropdown panel) */
+.role-info{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease, opacity .3s ease;background:rgba(255,255,255,0.02);border-radius:12px;margin-top:18px;padding:0 16px}
+.role-info.open{max-height:260px;opacity:1;padding:16px}
+.role-info h3{color:var(--accent);margin-bottom:8px}
+.role-info p{color:var(--muted)}
+
+/* Footer */
+.site-footer{background:var(--nav-bg);color:#fff;padding:12px 0;text-align:center;margin-top:28px}
+
+/* Responsive */
+@media (max-width:1200px){ .members-grid{grid-template-columns:repeat(3,1fr)} .carousel-card{flex:0 0 280px} }
+@media (max-width:800px){ .members-grid{grid-template-columns:repeat(2,1fr)} .about-grid{flex-direction:column;align-items:center;text-align:center} }
+@media (max-width:480px){ .members-grid{grid-template-columns:1fr} .brand-title{display:none} .hero-title{font-size:24px} }
+
+/* CONTACT SECTION */
+#contact {
+  background: #112240; /* dark blue background */
+  color: #facc15; /* bright yellow text */
+  padding: 60px 20px;
+  border-top: 4px solid #facc15;
 }
-.carousel {
-  display: flex;
-  gap: 20px;
-  overflow: hidden; /* only 3 visible */
-  width: 100%;
-  max-width: 960px; /* 3 cards * 320px */
-  scroll-behavior: smooth;
-  justify-content: center;
+
+#contact a {
+  color: #38bdf8; /* sky blue links */
+  text-decoration: none;
+  font-weight: bold;
 }
-.carousel-card {
-  flex: 0 0 300px;
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 8px 22px rgba(2,6,23,0.06);
-  text-align: center;
-  scroll-snap-align: center;
-  transition: transform 0.2s ease;
+
+#contact a:hover {
+  text-decoration: underline;
 }
-.carousel-card img{width:100%;height:140px;object-fit:contain;border-radius:8px;margin-bottom:8px}
-.carousel-card:hover{transform:scale(1.05)}
 
-/* ===========================
-   PROJECTS HSCROLL
-   =========================== */
-.projects-scroll-wrap{position:relative;display:flex;align-items:center}
-.hscroll{display:flex;gap:16px;overflow-x:auto;padding:12px 6px;scroll-behavior:smooth}
-.hscroll::-webkit-scrollbar{height:10px}
-.hcard{min-width:260px;flex:0 0 auto;background:var(--card);border-radius:10px;padding:12px;box-shadow:0 8px 22px rgba(2,6,23,0.06);transition:transform .18s}
-.hcard img{width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px}
-.hcard:hover{transform:scale(1.03)}
-
-/* ===========================
-   SHARED CAROUSEL / HSCROLL BUTTONS
-   =========================== */
-.carousel-btn,
-.hscroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.95);
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
+#contact .contact-info p {
+  margin: 8px 0;
+  font-size: 1.1rem;
 }
-.carousel-btn:hover,
-.hscroll-btn:hover {
-  transform: translateY(-50%) scale(1.08);
+/* ACHIEVEMENTS SECTION */
+#achievements {
+  background: #0a192f; /* darker blue background */
+  color: #facc15; /* bright yellow text */
+  padding: 60px 20px;
+  border-top: 4px solid #38bdf8;
 }
-/* left/right positions */
-.carousel-btn.left,
-.hscroll-btn.left { left: -45px; }
-.carousel-btn.right,
-.hscroll-btn.right { right: -45px; }
 
-/* ===========================
-   MEMBERS GRID
-   =========================== */
-.members-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:14px}
-.member-card{background:var(--card);padding:14px;border-radius:10px;text-align:center;box-shadow:0 8px 22px rgba(2,6,23,0.06);transition:transform .18s;position:relative;overflow:hidden}
-.member-card:hover{transform:scale(1.03)}
-.member-role-title{font-weight:600;margin-bottom:8px}
-.member-face{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:block}
-.toggle-role{background:var(--nav-bg);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer;margin-top:8px}
-.role-description{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 6px}
-.role-description.open{max-height:200px;padding-top:10px}
-
-/* ===========================
-   CONTACTS
-   =========================== */
-.contact-grid{display:flex;gap:24px;align-items:flex-start}
-.contact-social{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;cursor:pointer;text-decoration:none;color:inherit;margin-right:12px}
-.contact-social i{font-size:18px;transition:transform .15s}
-.contact-social:hover{transform:scale(1.06);color:var(--accent)}
-
-/* ===========================
-   FOOTER
-   =========================== */
-.site-footer{background:#0b1220;color:#fff;padding:18px 0;text-align:center;margin-top:28px}
-
-/* ===========================
-   RESPONSIVE
-   =========================== */
-@media (max-width: 980px){
-  .members-grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid{flex-direction:column;align-items:center;text-align:center}
+#achievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 700px;
 }
-@media (max-width:640px){
-  .members-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
+
+#achievements li {
+  margin: 12px 0;
+  font-size: 1.2rem;
+  background: rgba(56, 189, 248, 0.1); /* subtle blue highlight */
+  padding: 12px;
+  border-radius: 10px;
 }

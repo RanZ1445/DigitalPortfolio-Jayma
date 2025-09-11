@@ -1,0 +1,42 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background: #0a192f;
+  color: #facc15;
+}
+
+header {
+  background: #112240;
+  padding: 16px;
+  text-align: center;
+  border-bottom: 3px solid #38bdf8;
+  flex-shrink: 0;
+}
+
+.pdf-container {
+  flex-grow: 1;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  min-height: 0; /* important for flexbox */
+}
+
+.pdf-container iframe {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+footer {
+  background: #112240;
+  text-align: center;
+  padding: 10px;
+  border-top: 3px solid #38bdf8;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
